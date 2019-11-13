@@ -1,6 +1,0 @@
-development:
-  password: 7a9c2e4e4688e1d149754fcdf434665a
-  theme_id: "79169650736"
-  store: quentin-bernigaud.myshopify.com
-  ignore_files:
-    - config/settings_data.json
