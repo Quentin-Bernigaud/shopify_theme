@@ -1,0 +1,103 @@
+<a
+    target="_blank"
+    href="{{ section.settings.target }}"
+    style="
+    color: {{ section.settings.textcolor }};
+    font-size: {{ section.settings.fontsize }}px;
+    background-color: {{ section.settings.backgroundcolor }};
+    border-radius: {{ section.settings.borderradius }};
+    padding: {{ section.settings.padding }}px;
+    ">
+    {{ section.settings.label }}
+</a>
+
+{% schema %}
+{
+    "name": {
+        "en": "Button",
+        "fr": "Bouton"
+    },
+    "settings": [
+        {
+            "type": "text",
+            "id": "label",
+            "label": {
+                "en": "Button title",
+                "fr": "Titre du bouton"
+            },
+            "default": "I'm a button!"
+        },
+        {
+            "type": "color",
+            "id": "textcolor",
+            "label": {
+                "en": "Text color",
+                "fr": "Couleur du text"
+            },
+            "default": "#FFFFFF"
+        },
+        {
+            "type": "color",
+            "id": "backgroundcolor",
+            "label": {
+                "en": "Background color",
+                "fr": "Couleur de l'arrière plan"
+            },
+            "default": "#0097D7"
+        },
+        {
+            "type": "range",
+            "id": "fontsize",
+            "label": {
+                "en": "Font size",
+                "fr": "Taille de la police"
+            },
+            "default": 25,
+            "min": 8,
+            "max": 60
+        },
+        {
+            "type": "range",
+            "id": "borderradius",
+            "label": {
+                "en": "Border radius",
+                "fr": "Coins arrondis"
+            },
+            "default": 5,
+            "min": 0,
+            "max": 20
+        },
+        {
+            "type": "range",
+            "id": "padding",
+            "label": {
+                "en": "Padding",
+                "fr": "Marge interne"
+            },
+            "default": 5,
+            "min": 0,
+            "max": 20
+        },
+        {
+            "type": "url",
+            "id": "target",
+            "label": {
+                "en": "Target",
+                "fr": "Cible"
+            }
+        }
+    ],
+    "presets": [
+        {
+            "name": {
+                "en": "Button",
+                "fr": "Bouton"
+            },
+            "category": {
+                "en": "Button",
+                "fr": "Bouton"
+            }
+        }
+    ]
+}
+{% endschema %}
