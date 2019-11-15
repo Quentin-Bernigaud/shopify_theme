@@ -1,0 +1,71 @@
+<div data-section-id="{{ section.id }}" data-section-type="featured-content-section">
+  <div class="rich-text wrapper">
+    <div class="grid text-center">
+      <img src="{{ section.settings.image | img_url: '1000x'}}">
+      <ul style="display: flex;justify-content: space-around">
+        {% for link in linklists[section.settings.menu].links %}
+        <li style="list-style: none">
+        <a href="{{ link.url }}">{{ link.title }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+    "name": {
+        "en": "Menu",
+        "fr": "Menu"
+    },
+    "settings": [
+        {
+            "type": "image_picker",
+            "id":  "image",
+            "label": {
+                "en": "Choose an image",
+                "fr": "Choisir une image"
+            }
+        },
+        {
+      "type": "link_list",
+      "id": "menu",
+      "label": {
+        "da": "Menu",
+        "de": "Menü",
+        "en": "Menu",
+        "es": "Menú",
+        "fi": "Valikko",
+        "fr": "Menu",
+        "hi": "मेनू",
+        "it": "Menu",
+        "ja": "メニュー",
+        "ko": "메뉴",
+        "ms": "Menu",
+        "nb": "Meny",
+        "nl": "Menu",
+        "pt-BR": "Menu",
+        "pt-PT": "Menu",
+        "sv": "Meny",
+        "th": "เมนู",
+        "zh-CN": "菜单",
+        "zh-TW": "選單"
+      },
+      "default": "menu-iim"
+    }
+    ],
+    "presets": [
+        {
+            "name": {
+                "en": "Menu",
+                "fr": "Menu"
+            },
+            "category": {
+                "en": "Cours IIM",
+                "fr": "Cours IIM"
+            }
+        }
+    ]
+}
+{% endschema %}

@@ -1,15 +1,21 @@
-<a
-    target="_blank"
-    href="{{ section.settings.target }}"
-    style="
-    color: {{ section.settings.textcolor }};
-    font-size: {{ section.settings.fontsize }}px;
-    background-color: {{ section.settings.backgroundcolor }};
-    border-radius: {{ section.settings.borderradius }};
-    padding: {{ section.settings.padding }}px;
-    ">
-    {{ section.settings.label }}
-</a>
+<div data-section-id="{{ section.id }}" data-section-type="featured-content-section">
+  <div class="rich-text wrapper">
+    <div class="grid text-center">
+      <a
+        target="_blank"
+        href="{{ section.settings.target }}"
+        style="
+        color: {{ section.settings.textcolor }};
+        font-size: {{ section.settings.fontsize }}px;
+        background-color: {{ section.settings.backgroundcolor }};
+        border-radius: {{ section.settings.borderradius }};
+        padding: {{ section.settings.padding }}px;
+        ">
+        {{ section.settings.label }}
+      </a>
+    </div>
+  </div>
+</div>
 
 {% schema %}
 {
@@ -94,8 +100,8 @@
                 "fr": "Bouton"
             },
             "category": {
-                "en": "Button",
-                "fr": "Bouton"
+                "en": "Cours IIM",
+                "fr": "Cours IIM"
             }
         }
     ]

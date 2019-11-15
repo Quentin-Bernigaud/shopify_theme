@@ -1,0 +1,33 @@
+<a
+    target="_blank"
+    href="{{ section.settings.target }}"
+    style="
+    color: {{ section.settings.textcolor }};
+    font-size: {{ section.settings.fontsize }}px;
+    background-color: {{ section.settings.backgroundcolor }};
+    border-radius: {{ section.settings.borderradius }};
+    padding: {{ section.settings.padding }}px;
+    ">
+    {{ section.settings.label }}
+</a>
+
+{% schema %}
+{
+    "name": {
+        "en": "Mix & Match",
+        "fr": "Mix & Match"
+    },
+    "presets": [
+        {
+            "name": {
+                "en": "Mix & Match",
+                "fr": "Mix & Match"
+            },
+            "category": {
+                "en": "Cours IIM",
+                "fr": "Cours IIM"
+            }
+        }
+    ]
+}
+{% endschema %}
