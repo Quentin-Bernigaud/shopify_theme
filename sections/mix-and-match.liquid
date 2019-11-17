@@ -1,33 +1,174 @@
-<a
-    target="_blank"
-    href="{{ section.settings.target }}"
-    style="
-    color: {{ section.settings.textcolor }};
-    font-size: {{ section.settings.fontsize }}px;
-    background-color: {{ section.settings.backgroundcolor }};
-    border-radius: {{ section.settings.borderradius }};
-    padding: {{ section.settings.padding }}px;
-    ">
-    {{ section.settings.label }}
-</a>
+<h2 class="text-center">{{section.settings.mix_and_match_title}}</h2>
+{% if section.settings.collection_top != blank %}
+  <div class="flex__item mnm_collection">
+  {% for product in collections[section.settings.collection_top].products %}
+    {% assign img_url = product.featured_image | img_url: 'large'  %}
+    <div class="mnm_collection-item" style="background: url('{{img_url}}') center no-repeat; background-size: cover;">
+    <p class="mnm_collection-item_label">{{product.title}} <span>{{product.price | money}}</span></p>
+    </div>
+  {% endfor %}
+  </div>
+{% endif %}
+
+{% if section.settings.collection_bottom != blank %}
+  <div class="flex__item mnm_collection">
+  {% for product in collections[section.settings.collection_bottom].products %}
+    {% assign img_url = product.featured_image | img_url: 'large'  %}
+    <div class="mnm_collection-item" style="background: url('{{img_url}}') center no-repeat; background-size: cover;">
+    <p class="mnm_collection-item_label">{{product.title}} <span>{{product.price | money}} </span></p>
+    </div>
+  {% endfor %}
+  </div>
+{% endif %}
+
+<script>
+const collections = [
+  Array.from(document.querySelectorAll('.mnm_collection:first-of-type .mnm_collection-item')),
+  Array.from(document.querySelectorAll('.mnm_collection:last-of-type  .mnm_collection-item'))
+];
+
+collections.forEach(collection => {
+  collection[0].classList.add('active');
+  collection[0].parentNode.addEventListener('click', function(){mixing(collection, collection[0].parentNode)})
+})
+
+function mixing(collection, mnm_collection){
+  const current_index = collection.indexOf(mnm_collection.querySelector('.active'));
+  collection[current_index].classList.remove('active');
+  if(collection.length === current_index+1){
+    collection[0].classList.add('active');
+  }else{
+    collection[current_index+1].classList.add('active');
+  }
+}
+
+const vh_in_pixel = document.documentElement.clientHeight ;
+const vw_in_pixel = document.documentElement.clientWidth ;
+
+Array.from(document.querySelectorAll('.mnm_collection')).forEach(element => {
+  element.addEventListener('mousemove', function(e){swing(e, element.querySelectorAll('p'))})
+})
+
+function swing(event, target){
+  if(event.clientX<(vw_in_pixel/2)){
+    const cursor_X = -(vw_in_pixel/2 - event.clientX);
+  }else{
+    const cursor_X = event.clientX - vw_in_pixel/2;
+  }
+  const cursor_Y = event.clientY;
+  MaxSwing.to($(target), 1, {x: cursor_X/-50, y: cursor_Y/-50, ease: Back.easeOut.config(1.7)});
+}
+</script>
+
+<style>
+.mnm_section{
+  display: flex;
+  flex-direction: column;
+}
+
+.mnm_collection{
+  margin: 10px 0px;
+  position: relative;
+  width: 100%;
+  padding-bottom: 40vh;
+  cursor: pointer;
+  background-color: #1c1d1d;
+}
+
+.mnm_collection-item{
+  position: absolute;
+  width: 100%;
+  height: 40vh;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.mnm_collection-item.active{
+  opacity: 1;
+}
+
+.mnm_collection p{
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #FFFFFF;
+  margin: 20px;
+  padding: 5px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.mnm_collection span {
+  font-style: italic;
+}
+
+.mnm_collection:first-of-type p{
+  right: 0px;
+}
+
+.mnm_collection:last-of-type p{
+  bottom: 0px;
+}
+</style>
+
 
 {% schema %}
 {
-    "name": {
+  "name": {
+    "en": "Mix & Match",
+    "fr": "Mix & Match"
+  },
+  "settings": [
+    {
+      "id": "mix_and_match_title",
+      "type": "text",
+      "label": {
+        "en": "Title",
+        "fr": "Titre"
+      },
+      "default": "Mix & Match"
+    },
+    {
+      "id": "collection_top",
+      "type": "collection",
+      "label": {
+        "en": "Choose the top collection",
+        "fr": "Choisir la collection du dessus"
+      }
+    },
+    {
+      "id": "collection_bottom",
+      "type": "collection",
+      "label": {
+        "en": "Choose the bottom collection",
+        "fr": "Choisir la collection du dessous"
+      }
+    },
+    {
+      "type": "header",
+      "content": {
+        "en": "Warning",
+        "fr": "Attention"
+      }
+    },
+    {
+      "type": "paragraph",
+      "content": {
+        "en": "It works somtimes and some other times it doesn't. It seems that the JS doesn't manage to set the 'active' class.",
+        "fr": "Il est des fois où ça fonctionne mais pas à coup sûr. On dirait que le JS n'arrive pas à mettre la classe 'active'."
+      }
+    }
+  ],
+  "presets": [
+    {
+      "name": {
         "en": "Mix & Match",
         "fr": "Mix & Match"
-    },
-    "presets": [
-        {
-            "name": {
-                "en": "Mix & Match",
-                "fr": "Mix & Match"
-            },
-            "category": {
-                "en": "Cours IIM",
-                "fr": "Cours IIM"
-            }
-        }
-    ]
+      },
+      "category": {
+        "en": "Cours IIM",
+        "fr": "Cours IIM"
+      }
+    }
+  ]
 }
 {% endschema %}

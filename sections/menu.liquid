@@ -1,15 +1,13 @@
-<div data-section-id="{{ section.id }}" data-section-type="featured-content-section">
-  <div class="rich-text wrapper">
-    <div class="grid text-center">
-      <img src="{{ section.settings.image | img_url: '1000x'}}">
-      <ul style="display: flex;justify-content: space-around">
-        {% for link in linklists[section.settings.menu].links %}
-        <li style="list-style: none">
-        <a href="{{ link.url }}">{{ link.title }}</a>
-        </li>
-        {% endfor %}
-      </ul>
-    </div>
+<div class="rich-text wrapper">
+  <div class="grid text-center">
+    <img src="{{ section.settings.image | img_url: 'large'}}">
+    <ul style="display: flex;justify-content: space-around">
+      {% for link in linklists[section.settings.menu].links %}
+      <li style="list-style: none">
+      <a href="{{ link.url }}">{{ link.title }}</a>
+      </li>
+      {% endfor %}
+    </ul>
   </div>
 </div>
 
